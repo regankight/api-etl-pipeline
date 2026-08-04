@@ -1,6 +1,7 @@
-# snapshot_kpis.py
+import os
 import pandas as pd
 from datetime import datetime
+
 
 def snapshot_kpis(df):
     snapshot = {
@@ -9,4 +10,9 @@ def snapshot_kpis(df):
         'unique_emails': df['email'].nunique()
     }
     out = pd.DataFrame([snapshot])
-    out.to_csv('output/snapshot.csv', mode='a', header=not pd.io.common.file_exists('output/snapshot.csv'), index=False)
+    out.to_csv(
+        'output/snapshot.csv',
+        mode='a',
+        header=not os.path.exists('output/snapshot.csv'),
+        index=False
+    )
