@@ -10,6 +10,7 @@ def snapshot_kpis(df):
         'unique_emails': df['email'].nunique()
     }
     out = pd.DataFrame([snapshot])
+    os.makedirs('output', exist_ok=True)
     out.to_csv(
         'output/snapshot.csv',
         mode='a',

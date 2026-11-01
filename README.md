@@ -1,7 +1,5 @@
 # API → Clean → KPI Snapshot
 
-Prototype demonstrating a scheduled KPI pipeline with failure alerting. Uses generated data — this is a design demo, not a production system.
-
 Minimal ETL pipeline using a public API. Fetches, cleans, and logs KPI snapshots from real API data.
 
 ### 🧩 Flow Overview

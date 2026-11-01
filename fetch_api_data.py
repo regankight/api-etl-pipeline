@@ -1,3 +1,4 @@
+import os
 import requests
 import pandas as pd
 import logging
@@ -19,5 +20,6 @@ def fetch_api_data():
 
     df = pd.DataFrame(r.json())
     logger.info("Fetched %d rows", len(df))
+    os.makedirs("data", exist_ok=True)
     df.to_csv("data/raw_users.csv", index=False)
     return df
