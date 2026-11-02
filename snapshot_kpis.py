@@ -2,6 +2,8 @@ import os
 import pandas as pd
 from datetime import datetime
 
+from paths import OUTPUT_DIR
+
 
 def snapshot_kpis(df):
     snapshot = {
@@ -10,10 +12,11 @@ def snapshot_kpis(df):
         'unique_emails': df['email'].nunique()
     }
     out = pd.DataFrame([snapshot])
-    os.makedirs('output', exist_ok=True)
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    snapshot_path = os.path.join(OUTPUT_DIR, 'snapshot.csv')
     out.to_csv(
-        'output/snapshot.csv',
+        snapshot_path,
         mode='a',
-        header=not os.path.exists('output/snapshot.csv'),
+        header=not os.path.exists(snapshot_path),
         index=False
     )
