@@ -5,6 +5,8 @@ import logging
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
+from paths import DATA_DIR
+
 logger = logging.getLogger(__name__)
 
 
@@ -20,6 +22,6 @@ def fetch_api_data():
 
     df = pd.DataFrame(r.json())
     logger.info("Fetched %d rows", len(df))
-    os.makedirs("data", exist_ok=True)
-    df.to_csv("data/raw_users.csv", index=False)
+    os.makedirs(DATA_DIR, exist_ok=True)
+    df.to_csv(os.path.join(DATA_DIR, "raw_users.csv"), index=False)
     return df
